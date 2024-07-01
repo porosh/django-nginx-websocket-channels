@@ -16,7 +16,7 @@ env/
 
 # Ignore static files (if they are generated and not part of the source)
 staticfiles/
-static/
+#static/
 
 # Ignore media files
 media/
