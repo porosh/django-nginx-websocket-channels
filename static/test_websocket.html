@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Test</title>
+  </head>
+  <body>
+    <h1>WebSocket Test</h1>
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send Message</button>
+    <ul id="messages"></ul>
+
+    <script>
+      // Create a new WebSocket connection to the specified server URL
+      const socket = new WebSocket("ws://127.0.0.1:8000/ws/chat/");
+
+      // Define a function to handle the open event, which signifies a successful connection
+      socket.onopen = function (e) {
+        console.log("Connection established");
+      };
+
+      // Define a function to handle incoming messages
+      socket.onmessage = function (event) {
+        // Get the messages list element
+        const messages = document.getElementById("messages");
+        // Create a new list item element
+        const message = document.createElement("li");
+        // Set the text content of the list item to the received message
+        message.textContent = event.data;
+        // Append the new list item to the messages list
+        messages.appendChild(message);
+      };
+
+      // Define a function to send messages
+      function sendMessage() {
+        // Get the input element
+        const input = document.getElementById("messageInput");
+        // Get the value from the input element
+        const message = input.value;
+        // Send the message as a JSON string
+        socket.send(JSON.stringify({ message: message }));
+        // Clear the input field
+        input.value = "";
+      }
+
+      // Define a function to handle the close event
+      socket.onclose = function (event) {
+        if (event.wasClean) {
+          console.log("Connection closed cleanly");
+        } else {
+          console.log("Connection interrupted");
+        }
+        console.log("Code: " + event.code + " Reason: " + event.reason);
+      };
+
+      // Define a function to handle errors
+      socket.onerror = function (error) {
+        console.error("WebSocket error:", error);
+      };
+    </script>
+  </body>
+</html>
