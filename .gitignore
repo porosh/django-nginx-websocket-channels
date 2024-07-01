@@ -1,0 +1,52 @@
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore environment variables
+.env
+
+# Ignore virtual environment directories
+venv/
+myenv/
+env/
+.venv/
+
+# Ignore database files
+*.sqlite3
+
+# Ignore static files (if they are generated and not part of the source)
+staticfiles/
+static/
+
+# Ignore media files
+media/
+
+# Ignore log files
+*.log
+
+# Ignore compiled files
+*.py[cod]
+*$py.class
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore npm and node modules
+node_modules/
+
+# Ignore coverage reports
+coverage/
+*.cover
+.hypothesis/
+
+# Ignore deployment files
+*.env
+.venv
+.local
+.python-version
